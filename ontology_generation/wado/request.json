@@ -1,0 +1,38 @@
+query ($nrUsers: Int, $nrRepositories: Int, $cursor: String) {
+  search(query: "type:user", first: $nrUsers, after: $cursor, type: USER) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    edges {
+      node {
+        ... on User {
+          repositories(first: $nrRepositories, orderBy: {field: STARGAZERS, direction: DESC}) {
+            edges {
+              node {
+                name
+                url
+                description
+                primaryLanguage {
+                  name
+                }
+                stargazers {
+                  totalCount
+                }
+                repositoryTopics (first: 20) {
+                  edges {
+                    node {
+                      topic {
+                        name
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

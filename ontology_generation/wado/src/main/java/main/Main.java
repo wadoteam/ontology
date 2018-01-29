@@ -1,11 +1,11 @@
 package main;
 
-import connection_tdb.Prefixes;
-import connection_tdb.TDBConnection;
-import connection_tdb.TDBRepository;
-import org.apache.jena.rdf.model.Statement;
-
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import github_provider.Classifier;
+import github_provider.Repository;
 
 public class Main {
 
@@ -18,9 +18,15 @@ public class Main {
 //            System.out.print(s.toString());
 //        }
 
-        TDBRepository manager = new TDBRepository();
+//        TDBRepository manager = new TDBRepository();
 //        manager.getAllClasses();
-        System.out.print(Prefixes.ONTOLOGY_NS);
+//        System.out.print(Prefixes.ONTOLOGY_NS);
+    	
+    	List<String> classes = new ArrayList<>();
+		classes.add("java");
+
+		Map<String, Map<String, List<Repository>>> classification = Classifier.classifyRepositories(classes);
+		System.out.println(classification);
     }
 
 }
