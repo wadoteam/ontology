@@ -1,0 +1,854 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.w3.org/2002/07/owl"
+     xmlns:wado="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:wd="http://www.wikidata.org/entity/">
+    <Ontology/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#hasLink -->
+
+    <ObjectProperty rdf:about="http://www.co-ode.org/ontologies/ont.owl#hasLink">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:range rdf:resource="http://www.co-ode.org/ontologies/ont.owl#Link"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#canBeStored -->
+
+    <ObjectProperty rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#canBeStored">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Media"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Hosting"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#hasParadigm -->
+
+    <ObjectProperty rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#hasParadigm">
+        <inverseOf rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#isParadigmFor"/>
+        <rdfs:domain>
+            <Class>
+                <unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Framework"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#ProgrammingLanguage"/>
+                </unionOf>
+            </Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Paradigm"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#hasSecurity -->
+
+    <ObjectProperty rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#hasSecurity">
+        <rdfs:domain>
+            <Class>
+                <unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Browser"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Platform"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#ProgrammingLanguage"/>
+                </unionOf>
+            </Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Security"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#implementedBy -->
+
+    <ObjectProperty rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#implementedBy">
+        <rdfs:domain>
+            <Class>
+                <unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Paradigm"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Rest"/>
+                </unionOf>
+            </Class>
+        </rdfs:domain>
+        <rdfs:range>
+            <Class>
+                <unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#DevelopmentEnvironment"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#ProgrammingLanguage"/>
+                </unionOf>
+            </Class>
+        </rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#isBrowserUsedBy -->
+
+    <ObjectProperty rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#isBrowserUsedBy">
+        <inverseOf rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#useBrowser"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Browser"/>
+        <rdfs:range>
+            <Class>
+                <unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#AutomationTesting"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#FrontEnd"/>
+                </unionOf>
+            </Class>
+        </rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#isDatabasedUsedBy -->
+
+    <ObjectProperty rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#isDatabasedUsedBy">
+        <inverseOf rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#useDatabase"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Database"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#DevelopmentEnvironment"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#isParadigmFor -->
+
+    <ObjectProperty rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#isParadigmFor">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Paradigm"/>
+        <rdfs:range>
+            <Class>
+                <unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Framework"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#ProgrammingLanguage"/>
+                </unionOf>
+            </Class>
+        </rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#preferFormat -->
+
+    <ObjectProperty rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#preferFormat">
+        <rdfs:domain>
+            <Class>
+                <unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Framework"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#ProgrammingLanguage"/>
+                </unionOf>
+            </Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Format"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#store -->
+
+    <ObjectProperty rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#store">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Cloud"/>
+        <rdfs:range>
+            <Class>
+                <unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Media"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Platform"/>
+                </unionOf>
+            </Class>
+        </rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#useBrowser -->
+
+    <ObjectProperty rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#useBrowser">
+        <rdfs:domain>
+            <Class>
+                <unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#AutomationTesting"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#FrontEnd"/>
+                </unionOf>
+            </Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Browser"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#useCI -->
+
+    <ObjectProperty rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#useCI">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Platform"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#ContinuousIntegration"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#useDatabase -->
+
+    <ObjectProperty rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#useDatabase">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#DevelopmentEnvironment"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Database"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#useServer -->
+
+    <ObjectProperty rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#useServer">
+        <rdfs:domain>
+            <Class>
+                <unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#ContinuousIntegration"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#DevelopmentEnvironment"/>
+                </unionOf>
+            </Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#ApplicationServers"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cosntantin/ontologies/2018/0/untitled-ontology-8#hasInfoIn -->
+
+    <ObjectProperty rdf:about="http://www.semanticweb.org/cosntantin/ontologies/2018/0/untitled-ontology-8#hasInfoIn">
+        <inverseOf rdf:resource="http://www.semanticweb.org/cosntantin/ontologies/2018/0/untitled-ontology-8#isAbout"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Book"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cosntantin/ontologies/2018/0/untitled-ontology-8#hasSupportFor -->
+
+    <ObjectProperty rdf:about="http://www.semanticweb.org/cosntantin/ontologies/2018/0/untitled-ontology-8#hasSupportFor">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#DevelopmentEnvironment"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#ProgrammingLanguage"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cosntantin/ontologies/2018/0/untitled-ontology-8#isAbout -->
+
+    <ObjectProperty rdf:about="http://www.semanticweb.org/cosntantin/ontologies/2018/0/untitled-ontology-8#isAbout">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Book"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cosntantin/ontologies/2018/0/untitled-ontology-8#isCompatibleWith -->
+
+    <ObjectProperty rdf:about="http://www.semanticweb.org/cosntantin/ontologies/2018/0/untitled-ontology-8#isCompatibleWith">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Editor"/>
+        <rdfs:range>
+            <Class>
+                <unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#BackEnd"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#FrontEnd"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#ProgrammingLanguage"/>
+                </unionOf>
+            </Class>
+        </rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cosntantin/ontologies/2018/0/untitled-ontology-8#isFor -->
+
+    <ObjectProperty rdf:about="http://www.semanticweb.org/cosntantin/ontologies/2018/0/untitled-ontology-8#isFor">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Framework"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#ProgrammingLanguage"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cosntantin/ontologies/2018/0/untitled-ontology-8#isOfferedBy -->
+
+    <ObjectProperty rdf:about="http://www.semanticweb.org/cosntantin/ontologies/2018/0/untitled-ontology-8#isOfferedBy">
+        <inverseOf rdf:resource="http://www.semanticweb.org/cosntantin/ontologies/2018/0/untitled-ontology-8#offer"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Service"/>
+        <rdfs:range>
+            <Class>
+                <unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#DevelopmentEnvironment"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#ProgrammingLanguage"/>
+                </unionOf>
+            </Class>
+        </rdfs:range>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cosntantin/ontologies/2018/0/untitled-ontology-8#offer -->
+
+    <ObjectProperty rdf:about="http://www.semanticweb.org/cosntantin/ontologies/2018/0/untitled-ontology-8#offer">
+        <rdfs:domain>
+            <Class>
+                <unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#DevelopmentEnvironment"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#ProgrammingLanguage"/>
+                </unionOf>
+            </Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Service"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cosntantin/ontologies/2018/0/untitled-ontology-8#runsOn -->
+
+    <ObjectProperty rdf:about="http://www.semanticweb.org/cosntantin/ontologies/2018/0/untitled-ontology-8#runsOn">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#ProgrammingLanguage"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Platform"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cosntantin/ontologies/2018/0/untitled-ontology-8#usedBy -->
+
+    <ObjectProperty rdf:about="http://www.semanticweb.org/cosntantin/ontologies/2018/0/untitled-ontology-8#usedBy">
+        <inverseOf rdf:resource="http://www.semanticweb.org/cosntantin/ontologies/2018/0/untitled-ontology-8#uses"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#BackEnd"/>
+    </ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cosntantin/ontologies/2018/0/untitled-ontology-8#uses -->
+
+    <ObjectProperty rdf:about="http://www.semanticweb.org/cosntantin/ontologies/2018/0/untitled-ontology-8#uses">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#BackEnd"/>
+    </ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#hasStars -->
+
+    <DatatypeProperty rdf:about="http://www.co-ode.org/ontologies/ont.owl#hasStars">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#hasDescription -->
+
+    <DatatypeProperty rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#hasDescription">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.co-ode.org/ontologies/ont.owl#Link -->
+
+    <Class rdf:about="http://www.co-ode.org/ontologies/ont.owl#Link"/>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Android -->
+
+    <Class rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Android">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#OperatingSystems"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#ApplicationServers -->
+
+    <Class rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#ApplicationServers"/>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Attack -->
+
+    <Class rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Attack">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Security"/>
+        <disjointWith rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Tool"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Audio -->
+
+    <Class rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Audio">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Media"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#AudioEdit -->
+
+    <Class rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#AudioEdit">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Audio"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#AutomationTesting -->
+
+    <Class rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#AutomationTesting">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#TestThink"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#BackEnd -->
+
+    <Class rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#BackEnd"/>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Book -->
+
+    <Class rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Book"/>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Browser -->
+
+    <Class rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Browser">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#DevelopmentEnvironment"/>
+        <disjointWith rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Framework"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#CSSThink -->
+
+    <Class rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#CSSThink">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#FrontEnd"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Caching -->
+
+    <Class rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Caching">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Rest"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Cloud -->
+
+    <Class rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Cloud">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Platform"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Comic -->
+
+    <Class rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Comic"/>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#ContinuousIntegration -->
+
+    <Class rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#ContinuousIntegration"/>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Database -->
+
+    <Class rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Database"/>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#DevelopmentEnvironment -->
+
+    <Class rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#DevelopmentEnvironment"/>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Editor -->
+
+    <Class rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Editor"/>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Emoji -->
+
+    <Class rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Emoji">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Font"/>
+        <disjointWith rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Icon"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Font -->
+
+    <Class rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Font">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Media"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Format -->
+
+    <Class rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Format">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#DevelopmentEnvironment"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Framework -->
+
+    <Class rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Framework">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#DevelopmentEnvironment"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#FrontEnd -->
+
+    <Class rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#FrontEnd"/>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Gateway -->
+
+    <Class rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Gateway">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Rest"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#HTMLThing -->
+
+    <Class rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#HTMLThing">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#FrontEnd"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Hosting -->
+
+    <Class rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Hosting">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Service"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Icon -->
+
+    <Class rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Icon">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Font"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Image -->
+
+    <Class rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Image">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Media"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#ImageCollection -->
+
+    <Class rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#ImageCollection">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Image"/>
+        <disjointWith rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#ImageEdit"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#ImageEdit -->
+
+    <Class rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#ImageEdit">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Image"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#JSON -->
+
+    <Class rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#JSON">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Format"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#JavaScript -->
+
+    <Class rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#JavaScript">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#FrontEnd"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Linux -->
+
+    <Class rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Linux">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#OperatingSystems"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#MacOs -->
+
+    <Class rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#MacOs">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#OperatingSystems"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Maps -->
+
+    <Class rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Maps">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Service"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Media -->
+
+    <Class rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Media"/>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#NoSQL -->
+
+    <Class rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#NoSQL">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Database"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#OperatingSystems -->
+
+    <Class rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#OperatingSystems">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Platform"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Paradigm -->
+
+    <Class rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Paradigm"/>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Platform -->
+
+    <Class rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Platform"/>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#ProgrammingLanguage -->
+
+    <Class rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#ProgrammingLanguage"/>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Rest -->
+
+    <Class rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Rest"/>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#SQL -->
+
+    <Class rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#SQL">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Database"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Security -->
+
+    <Class rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Security"/>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Service -->
+
+    <Class rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Service"/>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#SmartTv -->
+
+    <Class rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#SmartTv">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Platform"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#StatusCode -->
+
+    <Class rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#StatusCode">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Rest"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#TestThink -->
+
+    <Class rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#TestThink"/>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Tool -->
+
+    <Class rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Tool">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Security"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Translation -->
+
+    <Class rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Translation">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Service"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#UiUxThing -->
+
+    <Class rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#UiUxThing">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#FrontEnd"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Video -->
+
+    <Class rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Video">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Media"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#VideoEdit -->
+
+    <Class rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#VideoEdit">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Video"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#XML -->
+
+    <Class rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#XML">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Format"/>
+    </Class>
+    
+
+
+    <!-- http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#YML -->
+
+    <Class rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#YML">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Format"/>
+    </Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Android"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Linux"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#MacOs"/>
+        </members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Audio"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Font"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Image"/>
+        </members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#CSSThink"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#HTMLThing"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#JavaScript"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#UiUxThing"/>
+        </members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Caching"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Gateway"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#StatusCode"/>
+        </members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Cloud"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#OperatingSystems"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#SmartTv"/>
+        </members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Hosting"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Maps"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#Translation"/>
+        </members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#JSON"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#XML"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#YML"/>
+        </members>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
+
