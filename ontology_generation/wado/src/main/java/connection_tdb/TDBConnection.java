@@ -10,9 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TDBConnection {
-    private static final String ONTOLOGY_PATH_TDB = "/home/cosntantin/Downloads/wado/ontology";
+    private static final String ONTOLOGY_PATH_TDB = "/home/cosntantin/Downloads/ontology/ontology_generation/wado/ontology";
     private static final String ONTOLOGY_MODEL_NAME = "wado";
-    private static final String ONTOLOGY_FILES = "/home/cosntantin/Downloads/wado/src/main/resources/wado-final.owl";
+    private static final String ONTOLOGY_FILES = "/home/cosntantin/Downloads/ontology/ontology_generation/wado/src/main/resources/wado-final.owl";
     private Dataset ds;
 
     public TDBConnection() {
@@ -61,26 +61,45 @@ public class TDBConnection {
     }
 
     public void addStatement(String subject, String property, String object) {
+        Model model = ds.getNamedModel(ONTOLOGY_MODEL_NAME);
+
+        Statement stmt = model.createStatement
+                (
+                        model.createResource(subject),
+                        model.createProperty(property),
+                        model.createResource(object)
+                );
+
+        this.add(stmt);
+    }
+
+    public void addLiteral(String subject, String property, Literal object) {
+        Model model = ds.getNamedModel(ONTOLOGY_MODEL_NAME);
+
+        Statement stmt = model.createStatement
+                (
+                        model.createResource(subject),
+                        model.createProperty(property),
+                        object
+                );
+        this.add(stmt);
+
+    }
+
+    private void add(Statement stmt) {
         Model model = null;
 
         ds.begin(ReadWrite.WRITE);
         try {
             model = ds.getNamedModel(ONTOLOGY_MODEL_NAME);
-
-            Statement stmt = model.createStatement
-                    (
-                            model.createResource(subject),
-                            model.createProperty(property),
-                            model.createResource(object)
-                    );
-
             model.add(stmt);
             ds.commit();
         } finally {
             ds.end();
         }
     }
-    public void setOntologyPrefix() {
-        Prefixes.ONTOLOGY_NS = ds.getNamedModel(ONTOLOGY_MODEL_NAME).getNsPrefixURI("wado");
+
+    public void setOntologyPrefixes() {
+        Prefixes.createWadoPrefixes(ds.getNamedModel(ONTOLOGY_MODEL_NAME).getNsPrefixURI("wado"));
     }
 }
