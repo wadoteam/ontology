@@ -21,6 +21,7 @@ public class Classifier {
 					}
 				}
 			}
+			break; //TODO: Remove this
 		}
 		return classification;
 	}

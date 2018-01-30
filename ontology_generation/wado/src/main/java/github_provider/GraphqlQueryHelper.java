@@ -16,7 +16,11 @@ import org.json.JSONTokener;
 
 public class GraphqlQueryHelper {
 	private static final String URL = "https://api.github.com/graphql";
-	private static final String KEY = "f3e19bf7bb3b8934f1f0fee6e64aa4dc718d8a45";
+	private static final String KEY = "ae3fd0226368277c61d04b3a5280e2cdce896957";
+
+	private static final int NR_USERS = 20;
+	private static final int NR_REPOS = 100;
+	
 	private static String cursor;
 	private static boolean hasNextRepos = true;
 
@@ -45,8 +49,8 @@ public class GraphqlQueryHelper {
 			jsonObjectRequest.put("query", new String(data, "UTF-8"));
 
 			JSONObject variables = new JSONObject();
-			variables.put("nrUsers", 10);
-			variables.put("nrRepositories", 100);
+			variables.put("nrUsers", NR_USERS);
+			variables.put("nrRepositories", NR_REPOS);
 			if (hasNextRepos) {
 				variables.put("cursor", cursor);
 			}
@@ -69,6 +73,7 @@ public class GraphqlQueryHelper {
 	}
 
 	private static List<Repository> JSONObjectToRepositoriesList(JSONObject object) throws Exception {
+		
 		if (object.get("data").equals("null")) {
 			return new ArrayList<>();
 		}
