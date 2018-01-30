@@ -10,12 +10,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TDBConnection {
-    private static final String ONTOLOGY_PATH_TDB = "../../../../ontology";
+    private static  String ONTOLOGY_PATH_TDB = "../../../../ontology";
     private static final String ONTOLOGY_MODEL_NAME = "wado";
-    private static final String ONTOLOGY_FILES = "../../resources/wado-final.owl";
+    private static  String ONTOLOGY_FILES;
     private Dataset ds;
 
     public TDBConnection() {
+        ClassLoader classLoader = getClass().getClassLoader();
+        ONTOLOGY_FILES = classLoader.getResource("wado-final.owl").toString();
+        ONTOLOGY_PATH_TDB = System.getProperty("user.dir") + "/ontology";
         ds = TDBFactory.createDataset(ONTOLOGY_PATH_TDB);
     }
 

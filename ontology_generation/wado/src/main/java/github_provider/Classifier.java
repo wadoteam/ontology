@@ -1,5 +1,7 @@
 package github_provider;
 
+import connection_tdb.Utils;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -7,17 +9,17 @@ import java.util.Map;
 
 public class Classifier {
 
-	public static Map<String, Map<String, List<Repository>>> classifyRepositories(List<String> classes) {
-		Map<String, Map<String, List<Repository>>> classification = initMap(classes);
+	public static Map<String, Map<String, List<Repository>>> classifyRepositories(Map<String, String> classes) {
+		Map<String, Map<String, List<Repository>>> classification = initMap(Utils.getValuesArrayFromMap(classes));
 		
 		while (GraphqlQueryHelper.hasNext()) {
 			List<Repository> list = GraphqlQueryHelper.getAllRepositories();
-			
+			List<String> formatedClassesNames = Utils.getKeysArrayFromMap(classes);
 			for (int i = 0; i < list.size(); i++) {
-				for (int j = 0; j < classes.size(); j++) {
-					String res = classify(list.get(i), classes.get(j));
+				for (int j = 0; j < formatedClassesNames.size(); j++) {
+					String res = classify(list.get(i), formatedClassesNames.get(j).toLowerCase());
 					if (res != null) {
-						classification.get(classes.get(j)).get(res).add(list.get(i));
+						classification.get(classes.get(formatedClassesNames.get(j))).get(res).add(list.get(i));
 					}
 				}
 			}

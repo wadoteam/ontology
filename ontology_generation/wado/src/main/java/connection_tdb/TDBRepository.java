@@ -8,6 +8,7 @@ import org.apache.jena.rdf.model.Statement;
 import org.apache.jena.vocabulary.XSD;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,12 +22,12 @@ public class TDBRepository {
 
     }
 
-    public List<String> getAllClasses() {
+    public Map<String, String> getAllClasses() {
         List<Statement> classesTriple = this.conn.getStatements(null, Prefixes.RDF_TYPE, Prefixes.OWL_CLASS);
-        List<String> classes = new ArrayList<String>();
+        Map<String, String> classes = new HashMap<>();
         for (Statement triple : classesTriple) {
             if (triple.getSubject().getLocalName() != null) {
-                classes.add(Utils.format(triple.getSubject().getLocalName()));
+                classes.put(Utils.format(triple.getSubject().getLocalName()), triple.getSubject().getLocalName());
             }
         }
         return classes;
@@ -73,7 +74,11 @@ public class TDBRepository {
     }
 
     public void printAll() {
-        List<Statement> a = conn.getStatements(null, Prefixes.WADO_HAS_STARS, null);
-        System.out.print(a);
+        List<Statement> listStmt = conn.getStatements(null, Prefixes.WADO_HAS_LINK, null);
+        System.out.println(listStmt.size());
+        for(Statement s:listStmt){
+            System.out.println(s);
+        }
+
     }
 }

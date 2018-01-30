@@ -17,7 +17,7 @@ import org.json.JSONTokener;
 
 public class GraphqlQueryHelper {
 	private static final String URL = "https://api.github.com/graphql";
-	private static final String KEY = "ae3fd0226368277c61d04b3a5280e2cdce896957";
+	private static final String KEY = "dc6dfe1539fec90deb07eddb34c0da163240f67f";
 
 	private static final int NR_USERS = 20;
 	private static final int NR_REPOS = 100;
