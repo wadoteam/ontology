@@ -10,9 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TDBConnection {
-    private static final String ONTOLOGY_PATH_TDB = "/home/cosntantin/Downloads/ontology/ontology_generation/wado/ontology";
+    private static final String ONTOLOGY_PATH_TDB = "../../../../ontology";
     private static final String ONTOLOGY_MODEL_NAME = "wado";
-    private static final String ONTOLOGY_FILES = "/home/cosntantin/Downloads/ontology/ontology_generation/wado/src/main/resources/wado-final.owl";
+    private static final String ONTOLOGY_FILES = "../../resources/wado-final.owl";
     private Dataset ds;
 
     public TDBConnection() {
