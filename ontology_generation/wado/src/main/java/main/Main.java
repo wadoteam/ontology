@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import connection_tdb.TDBRepository;
 import github_provider.Classifier;
 import github_provider.Repository;
 
@@ -16,7 +17,7 @@ public class Main {
 //            System.out.print(s.toString());
 //        }
 
-//        TDBRepository manager = new TDBRepository();
+        TDBRepository manager = new TDBRepository();
 //        manager.getAllClasses();
 //
 //        Map<String, Map<String, List<Repository>>> t = new HashMap<String, Map<String, List<Repository>>>();
@@ -35,12 +36,13 @@ public class Main {
 //
 //        manager.insertInstances(t);
     	
-    	List<String> classes = new ArrayList<>();
-		classes.add("java");
-		classes.add("javascript");
+//    	List<String> classes = new ArrayList<>();
+//		classes.add("java");
+//		classes.add("javascript");
 
-		Map<String, Map<String, List<Repository>>> classification = Classifier.classifyRepositories(classes);
-		System.out.println(classification);
+		Map<String, Map<String, List<Repository>>> classification = Classifier.classifyRepositories(manager.getAllClasses());
+		manager.insertInstances(classification);
+//		System.out.println(classification);
     }
 
 }

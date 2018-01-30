@@ -33,8 +33,8 @@ public class TDBRepository {
 
     }
 
-    public void insertInstances(Map<String, Map<String, List<Repository>>> entitiesForAClass) {
-        for (Map.Entry<String, Map<String, List<Repository>>> entry : entitiesForAClass.entrySet()) {
+    public void insertInstances(Map<String, Map<String, List<Repository>>> entities) {
+        for (Map.Entry<String, Map<String, List<Repository>>> entry : entities.entrySet()) {
             String classToInsert = entry.getKey();
             for (Map.Entry<String, List<Repository>> instances : entry.getValue().entrySet()) {
                 this.insertReposBelongSingleClass(classToInsert, instances.getKey(), instances.getValue());

@@ -14,6 +14,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+
 public class GraphqlQueryHelper {
 	private static final String URL = "https://api.github.com/graphql";
 	private static final String KEY = "ae3fd0226368277c61d04b3a5280e2cdce896957";
@@ -59,7 +60,6 @@ public class GraphqlQueryHelper {
 
 			httpPost.setEntity(entity);
 			response = client.execute(httpPost);
-
 			JSONTokener jsonTokener = new JSONTokener(
 					new InputStreamReader(response.getEntity().getContent(), "UTF-8"));
 			JSONObject jsonData = new JSONObject(jsonTokener);
