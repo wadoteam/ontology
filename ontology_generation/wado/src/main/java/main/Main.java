@@ -25,12 +25,8 @@ public class Main {
 //        Map<String, Map<String, List<Repository>>> classification = Classifier.classifyRepositories(classes);
 //        manager.insertInstances(classification);
 
-        saveInstances(manager);
-        //        for (OntProperty pp : properties) {
-//            System.out.println(pp.getURI());
-//            System.out.println(manager.getDomainsClassesFor(pp));
-//            System.out.println("--------------------");
-//        }
+//        saveInstances(manager);
+
     }
 
     private static void saveInstances(TDBRepository manager) {
@@ -44,18 +40,15 @@ public class Main {
             List<OntResource> rangeInstances;
 
             domainInstances = getInstancesFor(manager, instances, domain);
-            System.out.println(domain);
-            System.out.println(property);
             rangeInstances = getInstancesFor(manager, instances, range);
-//            for (OntResource d : domainInstances) {
-//                for (OntResource r : rangeInstances) {
-//                    String description = manager.readDescription(r);
-//                    if (description.contains(Utils.format(d.getLocalName()))) {
-//                        System.out.println(d + " " + property + " " + r);
-////                        manager.insertProperty(d,property, r);
-//                    }
-//                }
-//            }
+            for (OntResource d : domainInstances) {
+                for (OntResource r : rangeInstances) {
+                    String description = manager.readDescription(r);
+                    if (description.contains(Utils.format(d.getLocalName()))) {
+                        manager.insertProperty(d, property, r);
+                    }
+                }
+            }
         }
     }
 
