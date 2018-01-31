@@ -71,7 +71,7 @@ text:TextIndexSolr    rdfs:subClassOf   text:TextIndex .
    ) .
 
 <#service>  rdf:type fuseki:Service ;
-    fuseki:name              "authority" ;       # http://host:port/tdb
+    fuseki:name              "wado" ;       # http://host:port/tdb
     fuseki:serviceQuery               "query" ;    # SPARQL query service
     fuseki:serviceQuery               "sparql" ;   # SPARQL query service
     fuseki:serviceUpdate              "update" ;   # SPARQL query service
