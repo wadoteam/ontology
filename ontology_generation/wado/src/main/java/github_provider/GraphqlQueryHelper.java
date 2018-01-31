@@ -19,6 +19,7 @@ public class GraphqlQueryHelper {
 	private static final String URL = "https://api.github.com/graphql";
 	private static final String KEY = "20f4e2cedd64f7a733a970df59d5e1f0df7cb53d";
 
+
 	private static final int NR_USERS = 20;
 	private static final int NR_REPOS = 100;
 	
@@ -63,6 +64,7 @@ public class GraphqlQueryHelper {
 			JSONTokener jsonTokener = new JSONTokener(
 					new InputStreamReader(response.getEntity().getContent(), "UTF-8"));
 			JSONObject jsonData = new JSONObject(jsonTokener);
+			System.out.println(jsonData);
 
 			return JSONObjectToRepositoriesList(jsonData);
 

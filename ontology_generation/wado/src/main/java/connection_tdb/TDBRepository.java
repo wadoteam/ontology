@@ -1,11 +1,17 @@
 package connection_tdb;
 
 import github_provider.Repository;
+import org.apache.jena.base.Sys;
 import org.apache.jena.datatypes.xsd.impl.XSDBaseNumericType;
 import org.apache.jena.datatypes.xsd.impl.XSDBaseStringType;
+import org.apache.jena.ontology.OntClass;
+import org.apache.jena.ontology.OntModel;
+import org.apache.jena.ontology.OntProperty;
+import org.apache.jena.ontology.OntResource;
+import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.rdf.model.ResourceFactory;
 import org.apache.jena.rdf.model.Statement;
-import org.apache.jena.vocabulary.XSD;
+import org.apache.jena.util.iterator.ExtendedIterator;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,6 +26,31 @@ public class TDBRepository {
 //        conn.loadModel();
         conn.setOntologyPrefixes();
 
+    }
+
+    public List<OntResource> readInstanceFor(OntClass c) {
+        return extractInstances(conn.getStatements(null, Prefixes.RDF_TYPE, c.getURI()));
+    }
+
+    public String readDescription(OntResource obj) {
+        List<Statement> s = conn.getStatements(obj.getURI(), Prefixes.WADO_HAS_DESCRIPTION, null );
+        if(s.size() >= 1) {
+            return s.get(0).getObject().asLiteral().getString();
+        }
+        return "";
+    }
+
+    public void insertProperty(OntResource s, OntProperty p, OntResource o) {
+        conn.addStatement(s.getURI(),p.getURI(),o.getURI());
+    }
+    private List<OntResource> extractInstances(List<Statement> stmts) {
+        List<OntResource> instances = new ArrayList<>();
+        for(Statement s: stmts) {
+            if(s.getSubject().toString().startsWith("http")) {
+                instances.add(s.getSubject().as(OntResource.class));
+            }
+        }
+        return instances;
     }
 
     public Map<String, String> getAllClasses() {
@@ -76,9 +107,51 @@ public class TDBRepository {
     public void printAll() {
         List<Statement> listStmt = conn.getStatements(null, Prefixes.WADO_HAS_LINK, null);
         System.out.println(listStmt.size());
-        for(Statement s:listStmt){
+        for (Statement s : listStmt) {
             System.out.println(s);
         }
+    }
 
+    public void insertProperties() {
+
+    }
+
+    public List<OntProperty> getAllProperties() {
+//        List<Statement> properties = this.conn.getStatements(null, Prefixes.RDF_TYPE, Prefixes.OWL_OBJECT_PROPERTY);
+//        properties.addAll(this.conn.getStatements(null, Prefixes.RDF_TYPE, Prefixes.OWL_DATATYPE_PROPERTY));
+//        System.out.println(properties.size());
+//        List<OntProperty> formatedProperties = new ArrayList<>();
+//        for (Statement triple : properties) {
+//            if (triple.getSubject().getLocalName() != null) {
+//                formatedProperties.add(triple.getSubject().as(OntProperty.class));
+//            }
+//        }
+//        return formatedProperties;
+
+        OntModel model = conn.getModel();
+        ExtendedIterator<OntProperty> propertiesIterator = model.listAllOntProperties();
+        List<OntProperty> properties = new ArrayList<>();
+        while (propertiesIterator.hasNext()) {
+            properties.add(propertiesIterator.next());
+        }
+        return properties;
+    }
+
+    public List<OntClass> getDomainsClassesFor(OntProperty property) {
+        ExtendedIterator<OntClass> opDomains = (ExtendedIterator<OntClass>) property.listDomain();
+        return convertToClassesList(opDomains);
+    }
+
+    public List<OntClass> getRangeClassesFor(OntProperty property) {
+        ExtendedIterator<OntClass> opRange = (ExtendedIterator<OntClass>) property.listRange();
+        return convertToClassesList(opRange);
+    }
+
+    private List<OntClass> convertToClassesList(ExtendedIterator<OntClass> opDomains) {
+        List<OntClass> classes = new ArrayList<>();
+        while (opDomains.hasNext()) {
+            classes.add(opDomains.next());
+        }
+        return classes;
     }
 }

@@ -1,5 +1,7 @@
 package connection_tdb;
 
+import org.apache.jena.ontology.OntModel;
+import org.apache.jena.ontology.OntModelSpec;
 import org.apache.jena.query.Dataset;
 import org.apache.jena.query.ReadWrite;
 import org.apache.jena.rdf.model.*;
@@ -10,9 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TDBConnection {
-    private static  String ONTOLOGY_PATH_TDB = "../../../../ontology";
+    private static String ONTOLOGY_PATH_TDB = "../../../../ontology";
     private static final String ONTOLOGY_MODEL_NAME = "wado";
-    private static  String ONTOLOGY_FILES;
+    private static String ONTOLOGY_FILES;
     private Dataset ds;
 
     public TDBConnection() {
@@ -92,17 +94,17 @@ public class TDBConnection {
     private void add(Statement stmt) {
         Model model = null;
 
-        ds.begin(ReadWrite.WRITE);
-        try {
-            model = ds.getNamedModel(ONTOLOGY_MODEL_NAME);
-            model.add(stmt);
-            ds.commit();
-        } finally {
-            ds.end();
-        }
+        model = ds.getNamedModel(ONTOLOGY_MODEL_NAME);
+        model.add(stmt);
+        ds.commit();
+
     }
 
     public void setOntologyPrefixes() {
         Prefixes.createWadoPrefixes(ds.getNamedModel(ONTOLOGY_MODEL_NAME).getNsPrefixURI("wado"));
+    }
+
+    public OntModel getModel() {
+        return ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM, ds.getNamedModel(ONTOLOGY_MODEL_NAME));
     }
 }

@@ -345,6 +345,14 @@
     
 
 
+    <!-- http://www.co-ode.org/ontologies/ont.owl#hasPriority -->
+
+    <DatatypeProperty rdf:about="http://www.co-ode.org/ontologies/ont.owl#hasPriority">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </DatatypeProperty>
+    
+
+
     <!-- http://www.co-ode.org/ontologies/ont.owl#hasStars -->
 
     <DatatypeProperty rdf:about="http://www.co-ode.org/ontologies/ont.owl#hasStars">
