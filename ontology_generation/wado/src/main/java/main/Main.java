@@ -44,7 +44,7 @@ public class Main {
             for (OntResource d : domainInstances) {
                 for (OntResource r : rangeInstances) {
                     String description = manager.readDescription(r);
-                    if (description.contains(Utils.format(d.getLocalName()))) {
+                    if (description.matches("(.*[^a-zA-Z])?"+Utils.format(d.getLocalName())+"([^a-zA-Z].*)?")) {
                         manager.insertProperty(d, property, r);
                     }
                 }
