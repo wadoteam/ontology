@@ -150,7 +150,10 @@ public class TDBRepository {
     private List<OntClass> convertToClassesList(ExtendedIterator<OntClass> opDomains) {
         List<OntClass> classes = new ArrayList<>();
         while (opDomains.hasNext()) {
-            classes.add(opDomains.next());
+            OntClass c = opDomains.next();
+            if(c != null && c.getURI() != null) {
+                classes.add(c);
+            }
         }
         return classes;
     }

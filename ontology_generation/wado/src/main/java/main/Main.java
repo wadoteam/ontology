@@ -36,29 +36,33 @@ public class Main {
     private static void saveInstances(TDBRepository manager) {
         Map<String, List<OntResource>> instances = new HashMap<>();
         List<OntProperty> properties = manager.getAllProperties();
-        for(OntProperty property: properties) {
+        for (OntProperty property : properties) {
             List<OntClass> domain = manager.getDomainsClassesFor(property);
             List<OntClass> range = manager.getRangeClassesFor(property);
 
             List<OntResource> domainInstances;
             List<OntResource> rangeInstances;
+
             domainInstances = getInstancesFor(manager, instances, domain);
+            System.out.println(domain);
+            System.out.println(property);
             rangeInstances = getInstancesFor(manager, instances, range);
-            for(OntResource d:domainInstances){
-                for(OntResource r:rangeInstances) {
-                    String description = manager.readDescription(r);
-                    if(description.contains(Utils.format(d.getLocalName()))){
-                        manager.insertProperty(d,property, r);
-                    }
-                }
-            }
+//            for (OntResource d : domainInstances) {
+//                for (OntResource r : rangeInstances) {
+//                    String description = manager.readDescription(r);
+//                    if (description.contains(Utils.format(d.getLocalName()))) {
+//                        System.out.println(d + " " + property + " " + r);
+////                        manager.insertProperty(d,property, r);
+//                    }
+//                }
+//            }
         }
     }
 
     private static List<OntResource> getInstancesFor(TDBRepository manager, Map<String, List<OntResource>> instances, List<OntClass> domain) {
         List<OntResource> domainInstances = new ArrayList<>();
-        for(OntClass d:domain){
-            if(!instances.containsKey(d.getLocalName())) {
+        for (OntClass d : domain) {
+            if (!instances.containsKey(d.getLocalName())) {
                 List<OntResource> r = manager.readInstanceFor(d);
                 domainInstances.addAll(r);
                 instances.put(d.getLocalName(), r);

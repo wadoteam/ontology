@@ -39,27 +39,20 @@ public class TDBConnection {
 
         Model model = null;
 
-        ds.begin(ReadWrite.READ);
-        try {
-            model = ds.getNamedModel(ONTOLOGY_MODEL_NAME);
+        model = ds.getNamedModel(ONTOLOGY_MODEL_NAME);
 
-            Selector selector = new SimpleSelector(
-                    (subject != null) ? model.createResource(subject) : (Resource) null,
-                    (property != null) ? model.createProperty(property) : (Property) null,
-                    (object != null) ? model.createResource(object) : (RDFNode) null
-            );
+        Selector selector = new SimpleSelector(
+                (subject != null) ? model.createResource(subject) : (Resource) null,
+                (property != null) ? model.createProperty(property) : (Property) null,
+                (object != null) ? model.createResource(object) : (RDFNode) null
+        );
 
-            StmtIterator it = model.listStatements(selector);
-            {
-                while (it.hasNext()) {
-                    Statement stmt = it.next();
-                    results.add(stmt);
-                }
+        StmtIterator it = model.listStatements(selector);
+        {
+            while (it.hasNext()) {
+                Statement stmt = it.next();
+                results.add(stmt);
             }
-
-            ds.commit();
-        } finally {
-            ds.end();
         }
 
         return results;
@@ -96,7 +89,6 @@ public class TDBConnection {
 
         model = ds.getNamedModel(ONTOLOGY_MODEL_NAME);
         model.add(stmt);
-        ds.commit();
 
     }
 
