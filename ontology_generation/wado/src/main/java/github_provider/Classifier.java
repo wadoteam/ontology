@@ -12,8 +12,9 @@ public class Classifier {
 	public static Map<String, Map<String, List<Repository>>> classifyRepositories(Map<String, String> classes) {
 		Map<String, Map<String, List<Repository>>> classification = initMap(Utils.getValuesArrayFromMap(classes));
 		
-		while (GraphqlQueryHelper.hasNext()) {
+		while (GraphqlQueryHelper.hasNext()) {	
 			List<Repository> list = GraphqlQueryHelper.getAllRepositories();
+			
 			List<String> formatedClassesNames = Utils.getKeysArrayFromMap(classes);
 			for (int i = 0; i < list.size(); i++) {
 				for (int j = 0; j < formatedClassesNames.size(); j++) {
@@ -23,7 +24,6 @@ public class Classifier {
 					}
 				}
 			}
-			break; //TODO: Remove this
 		}
 		return classification;
 	}
