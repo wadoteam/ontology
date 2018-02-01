@@ -2,6 +2,9 @@ package main;
 
 import connection_tdb.TDBRepository;
 import connection_tdb.Utils;
+import github_provider.Classifier;
+import github_provider.Repository;
+
 import org.apache.jena.ontology.OntClass;
 import org.apache.jena.ontology.OntProperty;
 import org.apache.jena.ontology.OntResource;
@@ -21,11 +24,11 @@ public class Main {
          */
 
 
-//        Map<String, String> classes = manager.getAllClasses();
-//        Map<String, Map<String, List<Repository>>> classification = Classifier.classifyRepositories(classes);
-//        manager.insertInstances(classification);
+       Map<String, String> classes = manager.getAllClasses();
+       Map<String, Map<String, List<Repository>>> classification = Classifier.classifyRepositories(classes);
+        manager.insertInstances(classification);
 
-//        saveInstances(manager);
+        saveInstances(manager);
 
     }
 
