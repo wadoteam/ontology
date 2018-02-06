@@ -9,17 +9,19 @@ public class Repository {
 	private String language;
 	private int stars;
 	private List<String> topics;
+	private List<Issue> issues;
 
 	public Repository() {
 	}
 
-	public Repository(String name, String url, String description, String language, int stars, List<String> topics) {
+	public Repository(String name, String url, String description, String language, int stars, List<String> topics, List<Issue> issues) {
 		this.name = name;
 		this.url = url;
 		this.description = description;
 		this.language = language;
 		this.stars = stars;
 		this.topics = topics;
+		this.issues = issues;
 	}
 
 	public String toString() {
@@ -72,5 +74,13 @@ public class Repository {
 
 	public void setTopics(List<String> topics) {
 		this.topics = topics;
+	}
+
+	public List<Issue> getIssues() {
+		return issues;
+	}
+
+	public void setIssues(List<Issue> issues) {
+		this.issues = issues;
 	}
 }

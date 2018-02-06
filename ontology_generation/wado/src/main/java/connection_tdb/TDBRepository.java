@@ -1,22 +1,21 @@
 package connection_tdb;
 
-import github_provider.Repository;
-import org.apache.jena.base.Sys;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.apache.jena.datatypes.xsd.impl.XSDBaseNumericType;
 import org.apache.jena.datatypes.xsd.impl.XSDBaseStringType;
 import org.apache.jena.ontology.OntClass;
 import org.apache.jena.ontology.OntModel;
 import org.apache.jena.ontology.OntProperty;
 import org.apache.jena.ontology.OntResource;
-import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.rdf.model.ResourceFactory;
 import org.apache.jena.rdf.model.Statement;
 import org.apache.jena.util.iterator.ExtendedIterator;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import github_provider.Repository;
 
 public class TDBRepository {
     private TDBConnection conn;
@@ -137,12 +136,14 @@ public class TDBRepository {
         return properties;
     }
 
-    public List<OntClass> getDomainsClassesFor(OntProperty property) {
+    @SuppressWarnings("unchecked")
+	public List<OntClass> getDomainsClassesFor(OntProperty property) {
         ExtendedIterator<OntClass> opDomains = (ExtendedIterator<OntClass>) property.listDomain();
         return convertToClassesList(opDomains);
     }
 
-    public List<OntClass> getRangeClassesFor(OntProperty property) {
+    @SuppressWarnings("unchecked")
+	public List<OntClass> getRangeClassesFor(OntProperty property) {
         ExtendedIterator<OntClass> opRange = (ExtendedIterator<OntClass>) property.listRange();
         return convertToClassesList(opRange);
     }

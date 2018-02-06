@@ -28,6 +28,14 @@ query ($nrUsers: Int, $nrRepositories: Int, $cursor: String) {
                     }
                   }
                 }
+                issues (first: 100) {
+                  edges {
+                    node {
+                      bodyText
+                      closed
+                    }
+                  }
+                }
               }
             }
           }

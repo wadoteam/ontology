@@ -20,8 +20,8 @@ public class GraphqlQueryHelper {
 	private static final String KEY = "20f4e2cedd64f7a733a970df59d5e1f0df7cb53d";
 
 
-	private static final int NR_USERS = 20;
-	private static final int NR_REPOS = 100;
+	private static final int NR_USERS = 1;
+	private static final int NR_REPOS = 10;
 	
 	private static String cursor;
 	private static boolean hasNextRepos = true;
@@ -64,7 +64,6 @@ public class GraphqlQueryHelper {
 			JSONTokener jsonTokener = new JSONTokener(
 					new InputStreamReader(response.getEntity().getContent(), "UTF-8"));
 			JSONObject jsonData = new JSONObject(jsonTokener);
-			System.out.println(jsonData);
 
 			return JSONObjectToRepositoriesList(jsonData);
 
@@ -117,8 +116,17 @@ public class GraphqlQueryHelper {
 			String topic = topicsJson.getJSONObject(i).getJSONObject("node").getJSONObject("topic").getString("name");
 			topics.add(topic);
 		}
+		
+		JSONArray issuesJson = jsonRepository.getJSONObject("issues").getJSONArray("edges");	
+				
+		List<Issue> issues = new ArrayList<>();
+		for(int i=0; i<issuesJson.length(); i++) {
+			String text = issuesJson.getJSONObject(i).getJSONObject("node").getString("bodyText");
+			boolean closed = issuesJson.getJSONObject(i).getJSONObject("node").getBoolean("closed");
+			issues.add(new Issue(text,closed));
+		}
 
-		Repository newRepository = new Repository(name, url, description, language, stars, topics);
+		Repository newRepository = new Repository(name, url, description, language, stars, topics, issues);
 		return newRepository;
 	}
 }
