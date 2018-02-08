@@ -27,6 +27,10 @@ public class TDBRepository {
 
     }
 
+    public void syncDataset(){
+        conn.syncDataset();
+    }
+
     public List<OntResource> readInstanceFor(OntClass c) {
         return extractInstances(conn.getStatements(null, Prefixes.RDF_TYPE, c.getURI()));
     }
@@ -128,34 +132,45 @@ public class TDBRepository {
 //        return formatedProperties;
 
         OntModel model = conn.getModel();
+        model.begin();
         ExtendedIterator<OntProperty> propertiesIterator = model.listAllOntProperties();
         List<OntProperty> properties = new ArrayList<>();
         while (propertiesIterator.hasNext()) {
             properties.add(propertiesIterator.next());
         }
+        model.commit();
         return properties;
     }
 
     @SuppressWarnings("unchecked")
 	public List<OntClass> getDomainsClassesFor(OntProperty property) {
+        OntModel model = conn.getModel();
+        model.begin();
         ExtendedIterator<OntClass> opDomains = (ExtendedIterator<OntClass>) property.listDomain();
+        model.commit();
         return convertToClassesList(opDomains);
     }
 
     @SuppressWarnings("unchecked")
 	public List<OntClass> getRangeClassesFor(OntProperty property) {
+        OntModel model = conn.getModel();
+        model.begin();
         ExtendedIterator<OntClass> opRange = (ExtendedIterator<OntClass>) property.listRange();
+        model.commit();
         return convertToClassesList(opRange);
     }
 
     private List<OntClass> convertToClassesList(ExtendedIterator<OntClass> opDomains) {
         List<OntClass> classes = new ArrayList<>();
+        OntModel model = conn.getModel();
+        model.begin();
         while (opDomains.hasNext()) {
             OntClass c = opDomains.next();
             if(c != null && c.getURI() != null) {
                 classes.add(c);
             }
         }
+        model.commit();
         return classes;
     }
 }

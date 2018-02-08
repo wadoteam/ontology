@@ -5,6 +5,7 @@ import org.apache.jena.ontology.OntModelSpec;
 import org.apache.jena.query.Dataset;
 import org.apache.jena.query.ReadWrite;
 import org.apache.jena.rdf.model.*;
+import org.apache.jena.tdb.TDB;
 import org.apache.jena.tdb.TDBFactory;
 import org.apache.jena.util.FileManager;
 
@@ -24,6 +25,11 @@ public class TDBConnection {
         ds = TDBFactory.createDataset(ONTOLOGY_PATH_TDB);
     }
 
+    public void syncDataset() {
+        TDB.sync(ds);
+    }
+
+
     public void loadModel() {
         Model model = null;
 
@@ -38,22 +44,21 @@ public class TDBConnection {
         List<Statement> results = new ArrayList<Statement>();
 
         Model model = null;
-
+        ds.begin(ReadWrite.READ);
         model = ds.getNamedModel(ONTOLOGY_MODEL_NAME);
-
         Selector selector = new SimpleSelector(
                 (subject != null) ? model.createResource(subject) : (Resource) null,
                 (property != null) ? model.createProperty(property) : (Property) null,
                 (object != null) ? model.createResource(object) : (RDFNode) null
         );
-
         StmtIterator it = model.listStatements(selector);
-        {
-            while (it.hasNext()) {
-                Statement stmt = it.next();
-                results.add(stmt);
-            }
+
+        while (it.hasNext()) {
+            TDB.sync(ds);
+            Statement stmt = it.next();
+            results.add(stmt);
         }
+        ds.end();
 
         return results;
     }
@@ -86,9 +91,11 @@ public class TDBConnection {
 
     private void add(Statement stmt) {
         Model model = null;
-
+        ds.begin(ReadWrite.WRITE);
         model = ds.getNamedModel(ONTOLOGY_MODEL_NAME);
         model.add(stmt);
+        ds.commit();
+        ds.end();
 
     }
 
@@ -97,6 +104,9 @@ public class TDBConnection {
     }
 
     public OntModel getModel() {
-        return ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM, ds.getNamedModel(ONTOLOGY_MODEL_NAME));
+        ds.begin(ReadWrite.READ);
+        OntModel a =  ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM, ds.getNamedModel(ONTOLOGY_MODEL_NAME));
+        ds.end();
+        return a;
     }
 }
