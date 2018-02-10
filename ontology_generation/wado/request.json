@@ -13,6 +13,7 @@ query ($nrUsers: Int, $nrRepositories: Int, $cursor: String) {
                 name
                 url
                 description
+                license
                 primaryLanguage {
                   name
                 }

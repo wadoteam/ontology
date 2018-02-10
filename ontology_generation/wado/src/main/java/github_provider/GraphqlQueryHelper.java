@@ -105,6 +105,7 @@ public class GraphqlQueryHelper {
 		String name = jsonRepository.getString("name");
 		String url = jsonRepository.getString("url");
 		String description = !jsonRepository.isNull("description") ? jsonRepository.getString("description") : "";
+		String license = !jsonRepository.isNull("license") ? jsonRepository.getString("license") : "";
 
 		String language = !jsonRepository.isNull("primaryLanguage")
 				? jsonRepository.getJSONObject("primaryLanguage").getString("name") : "";
@@ -126,7 +127,7 @@ public class GraphqlQueryHelper {
 			issues.add(new Issue(text,closed));
 		}
 
-		Repository newRepository = new Repository(name, url, description, language, stars, topics, issues);
+		Repository newRepository = new Repository(name, url, description, language, license, stars, topics, issues);
 		return newRepository;
 	}
 }

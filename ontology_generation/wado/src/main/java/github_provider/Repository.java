@@ -7,6 +7,7 @@ public class Repository {
 	private String url;
 	private String description;
 	private String language;
+	private String license;
 	private int stars;
 	private List<String> topics;
 	private List<Issue> issues;
@@ -14,10 +15,11 @@ public class Repository {
 	public Repository() {
 	}
 
-	public Repository(String name, String url, String description, String language, int stars, List<String> topics, List<Issue> issues) {
+	public Repository(String name, String url, String description, String language, String license, int stars, List<String> topics, List<Issue> issues) {
 		this.name = name;
 		this.url = url;
 		this.description = description;
+		this.license = license;
 		this.language = language;
 		this.stars = stars;
 		this.topics = topics;
@@ -82,5 +84,13 @@ public class Repository {
 
 	public void setIssues(List<Issue> issues) {
 		this.issues = issues;
+	}
+
+	public String getLicense() {
+		return license;
+	}
+
+	public void setLicense(String license) {
+		this.license = license;
 	}
 }
