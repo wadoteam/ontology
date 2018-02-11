@@ -15,6 +15,7 @@ import org.apache.jena.rdf.model.ResourceFactory;
 import org.apache.jena.rdf.model.Statement;
 import org.apache.jena.util.iterator.ExtendedIterator;
 
+import github_provider.Issue;
 import github_provider.Repository;
 
 public class TDBRepository {
@@ -22,7 +23,7 @@ public class TDBRepository {
 
     public TDBRepository() {
         conn = new TDBConnection();
-//        conn.loadModel();
+//      conn.loadModel();
         conn.setOntologyPrefixes();
 
     }
@@ -36,7 +37,7 @@ public class TDBRepository {
     }
 
     public String readDescription(OntResource obj) {
-        List<Statement> s = conn.getStatements(obj.getURI(), Prefixes.WADO_HAS_DESCRIPTION, null );
+        List<Statement> s = conn.getStatements(obj.getURI(), Prefixes.ONTOLOGY_NS + Prefixes.WADO_HAS_DESCRIPTION, null );
         if(s.size() >= 1) {
             return s.get(0).getObject().asLiteral().getString();
         }
@@ -85,30 +86,57 @@ public class TDBRepository {
     }
 
     private void insertOneRepoFor(String className, String priority, Repository repo) {
-        conn.addStatement(Prefixes.ONTOLOGY_NS + repo.getName(), Prefixes.RDF_TYPE, Prefixes.ONTOLOGY_NS + className);
-        conn.addStatement(Prefixes.ONTOLOGY_NS + repo.getLanguage(), Prefixes.RDF_TYPE, Prefixes.WADO_PROGRAMING_LANGUAGE);
-        conn.addStatement(Prefixes.ONTOLOGY_NS + repo.getUrl(), Prefixes.RDF_TYPE, Prefixes.WADO_PROGRAMING_LANGUAGE);
-        conn.addStatement(Prefixes.ONTOLOGY_NS + repo.getName(), Prefixes.WADO_HAS_LINK, repo.getUrl());
+   	
+        conn.addStatement(Prefixes.ONTOLOGY_NS + repo.getName(), Prefixes.RDF_TYPE, Prefixes.ONTOLOGY_NS + Prefixes.WADO_REPOSITORY);
+        conn.addStatement(Prefixes.ONTOLOGY_NS + repo.getLanguage(), Prefixes.RDF_TYPE, Prefixes.ONTOLOGY_NS + Prefixes.WADO_PROGRAMING_LANGUAGE);
+        conn.addStatement(Prefixes.ONTOLOGY_NS + repo.getLicense(), Prefixes.RDF_TYPE, Prefixes.ONTOLOGY_NS + Prefixes.WADO_LICENSE);
+
+
+        conn.addStatement(Prefixes.ONTOLOGY_NS + className, Prefixes.ONTOLOGY_NS+Prefixes.WADO_HAS_REPOSITORY, Prefixes.ONTOLOGY_NS +  repo.getName());
+        conn.addStatement(Prefixes.ONTOLOGY_NS + repo.getName(), Prefixes.ONTOLOGY_NS+Prefixes.WADO_HAS_PRIMARY_LANGUAGE, Prefixes.ONTOLOGY_NS +  repo.getLanguage());
+        conn.addStatement(Prefixes.ONTOLOGY_NS + repo.getName(), Prefixes.ONTOLOGY_NS+Prefixes.WADO_HAS_LICENSE, Prefixes.ONTOLOGY_NS +  repo.getLicense());
+        
         conn.addLiteral(
                 Prefixes.ONTOLOGY_NS + repo.getName(),
-                Prefixes.WADO_HAS_DESCRIPTION,
+                Prefixes.ONTOLOGY_NS + Prefixes.WADO_HAS_LINK,
+                ResourceFactory.createTypedLiteral(repo.getUrl(), XSDBaseStringType.XSDstring)
+        );
+        conn.addLiteral(
+                Prefixes.ONTOLOGY_NS + repo.getName(),
+                Prefixes.ONTOLOGY_NS + Prefixes.WADO_HAS_DESCRIPTION,
                 ResourceFactory.createTypedLiteral(repo.getDescription(), XSDBaseStringType.XSDstring)
         );
         conn.addLiteral(
                 Prefixes.ONTOLOGY_NS + repo.getName(),
-                Prefixes.WADO_HAS_STARS,
+                Prefixes.ONTOLOGY_NS + Prefixes.WADO_HAS_STARS,
                 ResourceFactory.createTypedLiteral(String.valueOf(repo.getStars()), XSDBaseNumericType.XSDint)
         );
         conn.addLiteral(
                 Prefixes.ONTOLOGY_NS + repo.getName(),
-                Prefixes.WADO_HAS_PRIORITY,
+                Prefixes.ONTOLOGY_NS + Prefixes.WADO_HAS_PRIORITY,
                 ResourceFactory.createTypedLiteral(priority, XSDBaseStringType.XSDstring)
         );
+        
+        List<Issue> issues = repo.getIssues();
+        for(int i=0; i<issues.size(); i++) {
+        	conn.addStatement(Prefixes.ONTOLOGY_NS + issues.get(i).getTitle(), Prefixes.RDF_TYPE, Prefixes.ONTOLOGY_NS + Prefixes.WADO_ISSUE);
+        	conn.addStatement(Prefixes.ONTOLOGY_NS + repo.getName(), Prefixes.ONTOLOGY_NS+Prefixes.WADO_HAS_ISSUE, Prefixes.ONTOLOGY_NS +  issues.get(i).getTitle());
+        	conn.addLiteral(
+                    Prefixes.ONTOLOGY_NS + issues.get(i).getTitle(),
+                    Prefixes.ONTOLOGY_NS + Prefixes.WADO_HAS_DESCRIPTION,
+                    ResourceFactory.createTypedLiteral(issues.get(i).getText(), XSDBaseStringType.XSDstring)
+            );
+        	conn.addLiteral(
+                    Prefixes.ONTOLOGY_NS + issues.get(i).getTitle(),
+                    Prefixes.ONTOLOGY_NS + Prefixes.WADO_IS_CLOSED,
+                    ResourceFactory.createTypedLiteral(issues.get(i).isClosed())
+            );
+        }
 
     }
 
     public void printAll() {
-        List<Statement> listStmt = conn.getStatements(null, Prefixes.WADO_HAS_LINK, null);
+        List<Statement> listStmt = conn.getStatements(null, Prefixes.ONTOLOGY_NS + Prefixes.WADO_HAS_LINK, null);
         System.out.println(listStmt.size());
         for (Statement s : listStmt) {
             System.out.println(s);

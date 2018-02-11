@@ -31,7 +31,7 @@ public class Main {
             manager.insertInstances(classification);
             manager.syncDataset();
             saveInstances(manager);
-            // System.out.println(classification);
+            System.out.println(classification);
         }
 
     }

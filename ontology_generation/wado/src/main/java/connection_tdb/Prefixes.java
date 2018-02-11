@@ -8,26 +8,27 @@ public class Prefixes {
 
 
 
-    private static final String WADO_PROGRAMING_LANGUAGE_SUFFIX = "ProgrammingLanguage";
-    private static final String WADO_HAS_DESCRIPTION_SUFFIX = "hasDescription";
+    public static final String WADO_PROGRAMING_LANGUAGE = "Language";
+    public static final String WADO_ISSUE = "Issue";
+    public static final String WADO_LICENSE = "License";
+    public static final String WADO_REPOSITORY = "Repository";
+    
+    public static final String WADO_HAS_REPOSITORY = "hasRepository";
+    public static final String WADO_HAS_DESCRIPTION = "hasDescription";
+    public static final String WADO_HAS_LINK = "hasLink";
+    public static final String WADO_HAS_STARS = "hasStars";
+    public static final String WADO_HAS_PRIORITY = "hasPriority";
+    public static final String WADO_HAS_ISSUE = "hasIssue";
+    public static final String WADO_HAS_CREATED_DATE= "hasCreatedDate";
+    public static final String WADO_IS_CLOSED= "isClosed";
+    public static final String WADO_HAS_LICENSE= "hasLicense";
+    public static final String WADO_HAS_PRIMARY_LANGUAGE= "hasPrimaryLanguage";
 
-
-    public static  String WADO_PROGRAMING_LANGUAGE = "http://www.semanticweb.org/constantin/ontologies/2018/wado-awsome#ProgrammingLanguage";
     public static String ONTOLOGY_NS;
-
-
-
-    public static final String WADO_LINK = "http://www.co-ode.org/ontologies/ont.owl#Link";
-    public static final String WADO_HAS_LINK = "http://www.co-ode.org/ontologies/ont.owl#hasLink";
-    public static final String WADO_HAS_STARS = "http://www.co-ode.org/ontologies/ont.owl#hasStars";
-    public static String WADO_HAS_DESCRIPTION = "http://www.co-ode.org/ontologies/ont.owl#hasStars";
-    public static String WADO_HAS_PRIORITY = "http://www.co-ode.org/ontologies/ont.owl#hasPriority";
 
 
     public static void createWadoPrefixes(String ns) {
         Prefixes.ONTOLOGY_NS = ns;
-        Prefixes.WADO_PROGRAMING_LANGUAGE = ns + Prefixes.WADO_PROGRAMING_LANGUAGE_SUFFIX;
-        Prefixes.WADO_HAS_DESCRIPTION = ns + Prefixes.WADO_HAS_DESCRIPTION_SUFFIX;
     }
 
 }

@@ -20,7 +20,7 @@ public class TDBConnection {
 
     public TDBConnection() {
         ClassLoader classLoader = getClass().getClassLoader();
-        ONTOLOGY_FILES = classLoader.getResource("wado-final.owl").toString();
+        ONTOLOGY_FILES = classLoader.getResource("wado-ontology-rdf.owl").toString();
         ONTOLOGY_PATH_TDB = System.getProperty("user.dir") + "/ontology";
         ds = TDBFactory.createDataset(ONTOLOGY_PATH_TDB);
     }
@@ -100,7 +100,8 @@ public class TDBConnection {
     }
 
     public void setOntologyPrefixes() {
-        Prefixes.createWadoPrefixes(ds.getNamedModel(ONTOLOGY_MODEL_NAME).getNsPrefixURI("wado"));
+    	Prefixes.createWadoPrefixes("http://webprotege.stanford.edu/project/BNheXqpQbFxGhfZ0oWHJp1#");
+//        Prefixes.createWadoPrefixes(ds.getNamedModel(ONTOLOGY_MODEL_NAME).getNsPrefixURI("wado"));
     }
 
     public OntModel getModel() {

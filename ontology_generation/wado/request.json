@@ -32,8 +32,10 @@ query ($nrUsers: Int, $nrRepositories: Int, $cursor: String) {
                 issues (first: 100) {
                   edges {
                     node {
+                      title
                       bodyText
                       closed
+                      createdAt
                     }
                   }
                 }

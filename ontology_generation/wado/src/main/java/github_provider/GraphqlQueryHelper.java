@@ -122,9 +122,11 @@ public class GraphqlQueryHelper {
 				
 		List<Issue> issues = new ArrayList<>();
 		for(int i=0; i<issuesJson.length(); i++) {
+			String title = issuesJson.getJSONObject(i).getJSONObject("node").getString("title");
 			String text = issuesJson.getJSONObject(i).getJSONObject("node").getString("bodyText");
 			boolean closed = issuesJson.getJSONObject(i).getJSONObject("node").getBoolean("closed");
-			issues.add(new Issue(text,closed));
+			String createdAt = issuesJson.getJSONObject(i).getJSONObject("node").getString("createdAt");
+			issues.add(new Issue(title, text,closed, createdAt));
 		}
 
 		Repository newRepository = new Repository(name, url, description, language, license, stars, topics, issues);
