@@ -21,7 +21,7 @@ public class GraphqlQueryHelper {
 
 
 	private static final int NR_USERS = 1;
-	private static final int NR_REPOS = 10;
+	private static final int NR_REPOS = 50;
 	
 	private static String cursor;
 	private static boolean hasNextRepos = true;
@@ -70,13 +70,14 @@ public class GraphqlQueryHelper {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return null;
+		return new ArrayList<>();
 	}
 
 	private static List<Repository> JSONObjectToRepositoriesList(JSONObject object) throws Exception {
 		
 		if (object.get("data").equals("null")) {
-			return null;
+			System.out.println(object);
+			return new ArrayList<>();
 		}
 
 		List<Repository> repositoriesList = new ArrayList<Repository>();

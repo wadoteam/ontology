@@ -25,13 +25,19 @@ public class Main {
          */
 
         Map<String, String> classes = manager.getAllClasses();
-
+        int nr=0;
         while (Classifier.hasNext()) {
             Map<String, Map<String, List<Repository>>> classification = Classifier.classifyRepositories(classes);
+            System.out.println("A");
             manager.insertInstances(classification);
+            
+            System.out.println("B");
             manager.syncDataset();
+            
+            System.out.println("C");
             saveInstances(manager);
-            System.out.println(classification);
+            
+            System.out.println((nr++)+" "+classification);
         }
 
     }

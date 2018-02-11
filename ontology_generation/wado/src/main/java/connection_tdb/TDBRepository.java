@@ -23,8 +23,8 @@ public class TDBRepository {
 
     public TDBRepository() {
         conn = new TDBConnection();
-//      conn.loadModel();
-        conn.setOntologyPrefixes();
+      conn.loadModel();
+//        conn.setOntologyPrefixes();
 
     }
 
@@ -86,7 +86,7 @@ public class TDBRepository {
     }
 
     private void insertOneRepoFor(String className, String priority, Repository repo) {
-   	
+    	   	
         conn.addStatement(Prefixes.ONTOLOGY_NS + repo.getName(), Prefixes.RDF_TYPE, Prefixes.ONTOLOGY_NS + Prefixes.WADO_REPOSITORY);
         conn.addStatement(Prefixes.ONTOLOGY_NS + repo.getLanguage(), Prefixes.RDF_TYPE, Prefixes.ONTOLOGY_NS + Prefixes.WADO_PROGRAMING_LANGUAGE);
         conn.addStatement(Prefixes.ONTOLOGY_NS + repo.getLicense(), Prefixes.RDF_TYPE, Prefixes.ONTOLOGY_NS + Prefixes.WADO_LICENSE);

@@ -24,11 +24,11 @@ public class Prefixes {
     public static final String WADO_HAS_LICENSE= "hasLicense";
     public static final String WADO_HAS_PRIMARY_LANGUAGE= "hasPrimaryLanguage";
 
-    public static String ONTOLOGY_NS;
+    public static String ONTOLOGY_NS="http://webprotege.stanford.edu/project/BNheXqpQbFxGhfZ0oWHJp1#";
 
 
     public static void createWadoPrefixes(String ns) {
-        Prefixes.ONTOLOGY_NS = ns;
+//        Prefixes.ONTOLOGY_NS = ns;
     }
 
 }
