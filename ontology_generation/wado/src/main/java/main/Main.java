@@ -9,6 +9,7 @@ import org.apache.jena.ontology.OntClass;
 import org.apache.jena.ontology.OntProperty;
 import org.apache.jena.ontology.OntResource;
 
+import connection_tdb.Prefixes;
 import connection_tdb.TDBRepository;
 import connection_tdb.Utils;
 import github_provider.Classifier;
@@ -24,29 +25,17 @@ public class Main {
          * mai sus in are se i au repositories si se clasifica
          */
 
-//        Map<String, String> classes = manager.getAllClasses();
-//        int nr=0;
-//        while (Classifier.hasNext()) {
-//            Map<String, Map<String, List<Repository>>> classification = Classifier.classifyRepositories(classes);
-//            System.out.println("A");
-//            manager.insertInstances(classification);
-//            
-//            System.out.println("B");
-//            manager.syncDataset();
-//            
-//            System.out.println("C");
-//            saveInstances(manager);
-//            
-//            System.out.println((nr++)+" "+classification);
-//        }
-        
-        manager.addFramework("Spring", "Java");
-        manager.addFramework("Angular", "JavaScript");
-        manager.addFramework("Meteor", "JavaScript");
-        manager.addFramework("Vue", "JavaScript");
-        manager.addFramework("Ember", "JavaScript");
-
+        Map<String, String> classes = manager.getAllClasses();
+        while (Classifier.hasNext()) {
+            Map<String, Map<String, List<Repository>>> classification = Classifier.classifyRepositories(classes);
+            manager.insertInstances(classification);
+            manager.syncDataset();
+            saveInstances(manager);
+            
+            System.out.println(classification);
+        }
     }
+    
 
     private static void saveInstances(TDBRepository manager) {
         Map<String, List<OntResource>> instances = new HashMap<>();

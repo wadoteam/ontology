@@ -85,9 +85,8 @@ public class TDBRepository {
 
     }
     
-    public void addFramework(String framework, String limbaj) {
-    	conn.addStatement(Prefixes.ONTOLOGY_NS + framework, Prefixes.RDF_TYPE, Prefixes.ONTOLOGY_NS + "Framework");
-    	conn.addStatement(Prefixes.ONTOLOGY_NS + framework, Prefixes.ONTOLOGY_NS + "isFrameworkFor", Prefixes.ONTOLOGY_NS + limbaj);
+    public void add(String sub, String prop, String obj) {
+    	conn.addStatement(Prefixes.ONTOLOGY_NS + sub, prop, Prefixes.ONTOLOGY_NS + obj);
     }
 
     private void insertOneRepoFor(String className, String priority, Repository repo) {
